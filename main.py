@@ -1,12 +1,12 @@
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
-
+from infonegocio import info
 
 template = """
-Answer the question below.
+Answer the question below in spanish.
 
-Here is the constext of the conversation: 
-{context}
+Here is the business information about the company: 
+{infonegocio}
 
 Question: {question}
 
@@ -27,7 +27,7 @@ def chat():
         if question == "stop":
             break
 
-        result = chain.invoke({"context": context, "question": question})
+        result = chain.invoke({"infonegocio":info, "context": context, "question": question})
         print("Bot:", result)
         context += f"Bot: {result}\nYou: {question}\n"
 
